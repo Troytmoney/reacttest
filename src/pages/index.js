@@ -21,7 +21,13 @@ export default (() => {
 			</Strong>
 		</Text>
 		<Components.EmbedJS />
-		<Button transition="all 1s ease 0s" text-shadow="0 0 0 #e91e1e" height="159% border-box" font="1em --fontFamily-googleFredoka">
+		<Button
+			transition="all 1s ease 0s"
+			text-shadow="0 0 0 #e91e1e"
+			height="159% border-box"
+			font="1em --fontFamily-googleFredoka"
+			type="button"
+		>
 			ADD
 		</Button>
 		<Button transition="all 1s ease 0s" text-shadow="0 0 0 #e91e1e" height="159% border-box" font="1em --fontFamily-googleFredoka">
