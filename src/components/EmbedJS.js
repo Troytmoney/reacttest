@@ -5,7 +5,7 @@ const NumberFetcher = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch('YOUR_API_URL');
+				const response = await fetch('https://test.troyt.bio/currentnumber.php');
 				const data = await response.json();
 				setNumber(data.number); // Assuming the API response has a 'number' field
 			} catch (error) {

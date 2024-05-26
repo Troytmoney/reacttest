@@ -27,6 +27,7 @@ export default (() => {
 			height="159% border-box"
 			font="1em --fontFamily-googleFredoka"
 			type="button"
+			id="Addbutton"
 		>
 			ADD
 		</Button>
