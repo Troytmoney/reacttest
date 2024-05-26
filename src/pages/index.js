@@ -21,6 +21,10 @@ export default (() => {
 			</Strong>
 		</Text>
 		<Components.EmbedJS />
+		<Components.Addbutton>
+			ADD
+		</Components.Addbutton>
+		<Components.SubtractButton />
 		<Link
 			font={"--capture"}
 			font-size={"10px"}
