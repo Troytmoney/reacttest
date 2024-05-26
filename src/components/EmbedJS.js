@@ -7,7 +7,7 @@ const NumberFetcher = () => {
 			try {
 				const response = await fetch('https://test.troyt.bio/currentnumber.php');
 				const data = await response.json();
-				setNumber(data.number); // Assuming the API response has a 'number' field
+				setNumber(data.currentnumber); // Assuming the API response has a 'number' field
 			} catch (error) {
 				console.error('Error fetching data:', error);
 			}
