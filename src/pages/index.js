@@ -27,6 +27,7 @@ export default (() => {
 		<Button transition="all 1s ease 0s" text-shadow="0 0 0 #e91e1e" height="159% border-box" font="1em --fontFamily-googleFredoka">
 			SUBTRACK
 		</Button>
+		<Components.Addabdrem />
 		<Link
 			font={"--capture"}
 			font-size={"10px"}
