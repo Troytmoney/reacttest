@@ -1,49 +1,32 @@
-// CounterButtons.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const CounterButtons = () => {
-	const [count, setCount] = useState(0);
+const NumberFetcher = () => {
+	const [number, setNumber] = useState(null);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch('YOUR_API_URL');
+				const data = await response.json();
+				setNumber(data.number); // Assuming the API response has a 'number' field
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
 
-	const handleIncrement = async () => {
-		try {
-			const response = await fetch('https://test.troyt.bio/currentnumber.php', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					operation: 'ADD'
-				}
-			});
-			const data = await response.json();
-			setCount(data.currentcount);
-		} catch (error) {
-			console.error('Error adding:', error);
-		}
-	};
+		const intervalId = setInterval(fetchData, 2000); // Fetch every 2 seconds
 
-	const handleDecrement = async () => {
-		try {
-			const response = await fetch('https://test.troyt.bio/currentnumber.php', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					operation: 'REM'
-				}
-			});
-			const data = await response.json();
-			setCount(data.currentcount);
-		} catch (error) {
-			console.error('Error removing:', error);
-		}
-	};
-
+		return () => clearInterval(intervalId); // Cleanup on unmount
+	}, []);
 	return <div>
 		      
-		<h1>
-			Counter: 
-			{count}
-		</h1>
+		{number !== null ? <p>
+			Count: 
+			{number}
+		</p> : <p>
+			Loading...
+		</p>}
 		    
 	</div>;
 };
 
-export default CounterButtons;
+export default NumberFetcher;
