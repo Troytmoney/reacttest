@@ -2,17 +2,30 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const FlipCounter = () => {
 	const [count, setCount] = useState(0);
-	const countRef = useRef(null); // Fetch the initial count and set up an interval to update the count every second
+	const countRef = useRef(null); // Function to fetch count from the API
+
+	const fetchCount = () => {
+		fetch('https://test.troyt.bio/currentnumber.php').then(response => {
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+
+			return response.json();
+		}).then(data => {
+			console.log('Fetched count:', data); // Debug: log the data received
+
+			setCount(data.currentcount); // Ensure this matches the property from your JSON
+		}).catch(error => {
+			console.error('Error fetching count:', error);
+		});
+	}; // Fetch the initial count and set up an interval to update the count every second
+
 
 	useEffect(() => {
-		fetch('https://test.troyt.bio/currentnumber.php').then(response => response.json()).then(data => {
-			setCount(data.currentcount); // Make sure this matches your JSON response
-		}).catch(error => console.error('Error fetching count:', error));
-		const interval = setInterval(() => {
-			fetch('https://test.troyt.bio/currentnumber.php').then(response => response.json()).then(data => {
-				setCount(data.currentcount); // Make sure this matches your JSON response
-			}).catch(error => console.error('Error fetching count:', error));
-		}, 1000);
+		fetchCount(); // Fetch immediately on mount
+
+		const interval = setInterval(fetchCount, 1000); // Corrected the setInterval usage
+
 		return () => clearInterval(interval);
 	}, []); // Update the digit display with a flip animation
 
@@ -59,30 +72,6 @@ const FlipCounter = () => {
 			cursor: 'pointer'
 		}
 	};
-
-	const handleAdd = () => {
-		updateCount('ADD');
-	};
-
-	const handleRemove = () => {
-		updateCount('REM');
-	};
-
-	const updateCount = operation => {
-		fetch('https://test.troyt.bio/currentnumber.php', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Operation': operation
-			},
-			body: JSON.stringify({
-				count: operation === 'ADD' ? count + 1 : count - 1
-			})
-		}).then(response => response.json()).then(data => {
-			setCount(data.currentcount); // Make sure this matches your JSON response
-		}).catch(error => console.error('Error updating count:', error));
-	};
-
 	return <div style={styles.container}>
 		      
 		<div style={styles.counter} ref={countRef}>
@@ -100,11 +89,11 @@ const FlipCounter = () => {
 			      
 		</div>
 		      
-		<button style={styles.button} onClick={handleAdd}>
+		<button style={styles.button} onClick={() => setCount(count + 1)}>
 			Add
 		</button>
 		      
-		<button style={styles.button} onClick={handleRemove}>
+		<button style={styles.button} onClick={() => setCount(count - 1)}>
 			Remove
 		</button>
 		    
