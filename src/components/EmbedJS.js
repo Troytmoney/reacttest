@@ -13,7 +13,7 @@ const NumberFetcher = () => {
 			}
 		};
 
-		const intervalId = setInterval(fetchData, 2000); // Fetch every 2 seconds
+		const intervalId = setInterval(fetchData, 2); // Fetch every 2 seconds
 
 		return () => clearInterval(intervalId); // Cleanup on unmount
 	}, []);
