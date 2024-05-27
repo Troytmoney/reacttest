@@ -1,6 +1,6 @@
 import React from "react";
 import theme from "theme";
-import { Theme, Link, Strong, Text, Button } from "@quarkly/widgets";
+import { Theme, Link, Strong, Text } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml } from "@quarkly/components";
@@ -21,20 +21,6 @@ export default (() => {
 			</Strong>
 		</Text>
 		<Components.EmbedJS />
-		<Button
-			transition="all 1s ease 0s"
-			text-shadow="0 0 0 #e91e1e"
-			height="159% border-box"
-			font="1em --fontFamily-googleFredoka"
-			type="button"
-			id="Addbutton"
-		>
-			ADD
-		</Button>
-		<Button transition="all 1s ease 0s" text-shadow="0 0 0 #e91e1e" height="159% border-box" font="1em --fontFamily-googleFredoka">
-			SUBTRACK
-		</Button>
-		<Components.Addabdrem />
 		<Link
 			font={"--capture"}
 			font-size={"10px"}

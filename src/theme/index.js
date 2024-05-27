@@ -64,7 +64,7 @@ export default {
 		"xxl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
 	},
 	"background": {
-		"primaryGradient": "linear-gradient(180deg, --color-primary, transparent) no-repeat 0 0",
+		"primaryGradient": "linear-gradient(180deg,--color-primary 0%,transparent 100%) 0 0 no-repeat",
 		"secondaryGradient": "linear-gradient(180deg, --color-secondary, transparent) no-repeat 0 0"
 	},
 	"transform": {
@@ -168,5 +168,5 @@ export default {
 			}
 		}
 	},
-	"version": 4
+	"version": 5
 }
